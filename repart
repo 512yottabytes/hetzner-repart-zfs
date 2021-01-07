@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+e2fsck    -f /dev/sda1
+resize2fs -M /dev/sda1
+parted       /dev/sda  resizepart 1 5GB
+sgdisk    -n2:0:0      -t2:BF00 /dev/sda
+resize2fs    /dev/sda1
+e2fsck -f    /dev/sda1
+lsblk
+sync
+reboot
